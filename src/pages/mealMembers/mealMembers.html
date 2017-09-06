@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Members [ {{totalMembers}} ]</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-searchbar (ionInput)="getMemberMeals($event)" *ngIf="!ismemberMealsEmpty"></ion-searchbar>
+  
+  <ion-list *ngIf="!ismemberMealsEmpty">
+    <ion-card *ngFor="let memberMeal of memberMeals; let i = index;">
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="person"></ion-icon>
+              </ion-col>
+              <ion-col col-7>
+                <h2>{{ memberMeal.member.userProfile.fullName }}</h2>
+              </ion-col>
+              <ion-col col-3>
+                <ion-note>{{ memberMeal.createdUpdated.createdAt | date:'hh:mm a' }}</ion-note>
+              </ion-col>
+               
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+  </ion-card>
+  </ion-list>
+
+  <ion-card *ngIf="ismemberMealsEmpty">
+   <ion-card-content>
+      <ion-item>
+        <h2 class="txt-center-red"> <ion-icon item-left name="search"></ion-icon>No record found !</h2>
+      </ion-item>
+    </ion-card-content>
+</ion-card>
+
+</ion-content>

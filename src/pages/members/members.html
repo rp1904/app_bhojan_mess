@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Members</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="loadData($event);">
+    <ion-refresher-content 
+      pullingText="Pull to refresh"
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="circles"
+      refreshingText="... Fetching">
+    </ion-refresher-content>
+ </ion-refresher>
+
+  <ion-fab right bottom>
+    <button ion-fab color="theam-color" (click)="addNewMamber()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+
+  <ion-searchbar (ionInput)="getUsers($event)" *ngIf="!isMembersEmpty"></ion-searchbar>
+  
+  <ion-list *ngIf="!isMembersEmpty">
+    <ion-card *ngFor="let member of members; let i = index;">
+        <ion-card-content (click)="memberDetail(member.userIdPk)">
+          <ion-grid>
+            <ion-row>
+        
+              <ion-col col-2>
+                <ion-icon name="person"></ion-icon>
+              </ion-col>
+        
+              <ion-col col-10>
+                <h2>{{ member.userProfile.fullName }}</h2>
+              </ion-col>
+        
+            </ion-row>
+          </ion-grid>
+          <!--<ion-icon class="pull-left" name="person"></ion-icon>
+          <h2>{{ member.userProfile.fullName }}</h2>
+          <ion-icon name="check"></ion-icon>-->
+        </ion-card-content>
+  </ion-card>
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="!isComplete && !isMembersEmpty"  (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content 
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+   </ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+
+  <ion-card *ngIf="isMembersEmpty">
+   <ion-card-content>
+      <ion-item>
+        <h2 class="txt-center-red"> <ion-icon item-left name="search"></ion-icon>No new record found !</h2>
+      </ion-item>
+    </ion-card-content>
+</ion-card>
+
+</ion-content>

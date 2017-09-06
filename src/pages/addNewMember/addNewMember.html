@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon col-2 name="person-add"></ion-icon>
+       Add New Member
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<p *ngIf="!isFormValid" class="form-invalid-msg">Please fill out all details accurately.</p>
+
+    <form [formGroup]="memberSignUpForm" (ngSubmit)="addMember(memberSignUpForm.value)">
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="First Name" value="" [formControl]="memberSignUpForm.controls['firstName']" ></ion-input>
+      </ion-item>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['firstName'].hasError('required') && memberSignUpForm.controls['firstName'].touched">* First Name is required!</div>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['firstName'].hasError('maxlength') && memberSignUpForm.controls['firstName'].touched">* Maximum First Name length is 20!</div>
+      
+      <ion-item>
+        <ion-input type="text" placeholder="Last Name" value="" [formControl]="memberSignUpForm.controls['lastName']" ></ion-input>
+      </ion-item>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['lastName'].hasError('required') && memberSignUpForm.controls['lastName'].touched">* Last Name is required!</div>
+		    <div class="error-box" *ngIf="memberSignUpForm.controls['lastName'].hasError('maxlength') && memberSignUpForm.controls['lastName'].touched">* Maximum Last Name length is 20!</div>
+
+
+      <ion-item>
+        <ion-input type="email" placeholder="Email" value="" [formControl]="memberSignUpForm.controls['email']" [ngClass]="{'error-border':!memberSignUpForm.controls['email'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="memberSignUpForm.controls['email'].hasError('required') && memberSignUpForm.controls['email'].touched">* Email is required!</div>
+	    	<div class="error-box" *ngIf="memberSignUpForm.controls['email'].hasError('pattern') && memberSignUpForm.controls['email'].touched">* Invalid Email!</div>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Mobile Number" value="" [formControl]="memberSignUpForm.controls['mobileNo']" [ngClass]="{'error-border':!memberSignUpForm.controls['mobileNo'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="memberSignUpForm.controls['mobileNo'].hasError('required') && memberSignUpForm.controls['mobileNo'].touched">* Mobile Number is required!</div>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['mobileNo'].hasError('pattern') && memberSignUpForm.controls['mobileNo'].touched">* Invalid Mobile Number!</div>
+	    	
+        <!--<ion-item>
+          <ion-input type="password" placeholder="Password" value="" [formControl]="memberSignUpForm.controls['password']" ></ion-input>
+        </ion-item>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['password'].hasError('required') && memberSignUpForm.controls['password'].touched">* Password is required!</div>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['password'].hasError('minlength') && memberSignUpForm.controls['password'].touched">* Minimum Password length is 5!</div>
+
+        <ion-item>
+          <ion-input type="password" placeholder="Confirm Password" value="" [formControl]="memberSignUpForm.controls['confirmPassword']" ></ion-input>
+        </ion-item>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['confirmPassword'].hasError('required') && memberSignUpForm.controls['confirmPassword'].touched">* Confirm Password is required!</div>
+        <div class="error-box" *ngIf="memberSignUpForm.controls['confirmPassword'].hasError('minlength') && memberSignUpForm.controls['confirmPassword'].touched">* Minimum Confirm Password length is 5!</div>-->
+        <ion-item>
+        <ion-label>Meal Coupen</ion-label>
+            <ion-select [formControl]="memberSignUpForm.controls['selectedCoupenId']">
+              <ion-option [value]="coupen.coupenId" *ngFor="let coupen of coupens;"> {{ coupen.noOfMeals }} Meals, {{ coupen.validity }} Days, &#8377; {{ coupen.amount }}/- </ion-option>
+            </ion-select>
+        </ion-item>
+
+         <h4 class="pass-info"> *Auto generated password will be send to above email.</h4>
+
+         <br>
+         <button class="login-button btn-save" ion-button block> Add </button>
+
+    </ion-list>
+
+     </form>
+
+</ion-content>

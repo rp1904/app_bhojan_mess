@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Meal Coupens</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-button block class="btn-save" (click)="addCoupen()">
+    Add New Coupen
+  </button>
+  
+  <ion-list>
+    <ion-card *ngFor="let coupen of coupens; let i = index;">
+        <ion-card-content>
+
+          <!--<ion-icon (click)="removeCoupen(coupen.coupenId)" name="trash"></ion-icon>-->
+          <h2>No Of Meals: {{ coupen.noOfMeals }}</h2>
+          <h2>Validity: {{ coupen.validity }} Days</h2>
+          <h2>Amount:  &#8377; {{ coupen.amount }}</h2>
+          
+        </ion-card-content>
+    </ion-card>
+  </ion-list>
+ 
+  
+  <ion-card *ngIf="isCoupensEmpty">
+   <ion-card-content>
+      <ion-item>
+        <h2 class="txt-center-red"> <ion-icon item-left name="search"></ion-icon>No record found !</h2>
+      </ion-item>
+    </ion-card-content>
+</ion-card>
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>New Requests</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list *ngIf="!isRequestsEmpty">
+    <ion-card *ngFor="let request of requests; let i = index;">
+
+      <ion-card-content *ngIf="request.requestStatus=='PENDING'">
+         <ion-item>
+              <ion-icon item-left class="new-user-icon" name="person-add"></ion-icon>
+          
+              <p>{{ request.member.userProfile.fullName }}</p>
+              
+              <ion-icon class="accept" (click)="updateMembershipRequest('A',request.member.userIdPk,i)" item-right name="checkmark"></ion-icon>
+              <ion-icon class="reject"  (click)="updateMembershipRequest('R',request.member.userIdPk,i)" item-right name="close"></ion-icon>
+              
+            <ion-note>{{ request.createdUpdated.createdAt | date:'dd-MMM-yyyy hh:mm a' }}</ion-note>
+         </ion-item>
+      </ion-card-content>
+
+      <!--<button ion-button color="secondary" class="btn-resp" round item-right>Accept</button><br>
+      <button ion-button color="danger" class="btn-resp" round item-right>Reject</button>-->
+
+    </ion-card>
+
+  </ion-list>
+
+
+  <ion-card *ngIf="isRequestsEmpty">
+    <ion-card-content>
+      <ion-item>
+        <h2 class="txt-center-red"> <ion-icon item-left name="search"></ion-icon>No new request found !</h2>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

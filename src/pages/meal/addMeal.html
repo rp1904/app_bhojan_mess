@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Meal</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+   <ion-item>
+    <!--<ion-input type="text" [(ngModel)]="meal.$mealTitle" placeholder="Meal Title"></ion-input>-->
+    <ion-label>Meal For</ion-label>
+    <ion-select [(ngModel)]="meal.$mealTitle">
+      <ion-option value="Lunch" checked="true">Lunch</ion-option>
+      <ion-option value="Dinner">Dinner</ion-option>
+    </ion-select>
+   </ion-item>
+
+        <ion-row>
+        <ion-col col-6>
+        <ion-item class="text-center">
+        <ion-label>Veg</ion-label>
+        <ion-checkbox class="veg-nonveg-checkbox" checked  onclick="return false;" color="secondary"></ion-checkbox>
+        </ion-item>
+        </ion-col>
+       
+        <ion-col col-6>
+        <ion-item class="text-center">
+        <ion-label>Non-Veg</ion-label>
+        <ion-checkbox [(ngModel)]="meal.$isNonVeg" class="veg-nonveg-checkbox" color="danger"></ion-checkbox>
+        </ion-item>
+        </ion-col>
+        </ion-row>
+    
+    <ion-card>
+        <ion-card-content>
+            <ion-card-title class="text-center">
+            Veg Menu
+            </ion-card-title>
+              <ion-row>
+                <ion-textarea [(ngModel)]="meal.$vegDefaultMenu" placeholder=" Veg Deafult Meal Items\n Ex. Chapati (3), Rice (1 Bowl)"></ion-textarea>
+              </ion-row>
+             
+              <ion-row>
+                <ion-textarea  [(ngModel)]="meal.$vegItems"  placeholder=" Veg Meal Items\n Ex. Dal, Subzi"></ion-textarea>
+              </ion-row>
+              
+              <ion-row>
+                <ion-textarea  [(ngModel)]="meal.$vegExtra"  placeholder=" Extra Items\n Ex. Salad, Pickel, Papaad"></ion-textarea>
+              </ion-row>
+  
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card [hidden]="!meal.$isNonVeg" id="non-veg-menu">
+        <ion-card-content>
+            <ion-card-title class="text-center">
+            Non-Veg Menu
+            </ion-card-title>
+           <ion-row>
+                <ion-textarea [(ngModel)]="meal.$nonVegDefaultMenu" placeholder=" Non-Veg Deafult Meal Items\n Ex. Chapati (3) / Roti (2), Rice (1 Bowl)"></ion-textarea>
+              </ion-row>
+             
+              <ion-row>
+                <ion-textarea  [(ngModel)]="meal.$nonVegItems"  placeholder=" Non-Veg Meal Items\n Ex. Chiken / Mutton / Egg Curry"></ion-textarea>
+              </ion-row>
+              
+              <ion-row>
+                <ion-textarea  [(ngModel)]="meal.$nonVegExtra"  placeholder=" Extra Items\n Ex. Salad"></ion-textarea>
+              </ion-row>
+             
+        </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+        <ion-textarea  [(ngModel)]="meal.$note"  placeholder=" Note (If any)"></ion-textarea>
+    </ion-row>
+
+   <button ion-button block (click)="addMeal(meal)" class="btn-save">Add Meal</button>
+
+</ion-content>

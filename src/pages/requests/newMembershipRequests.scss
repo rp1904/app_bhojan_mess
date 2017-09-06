@@ -1,0 +1,24 @@
+page-newMembershipRequests {
+
+    .new-user-icon {
+       margin-left: -10px !important;
+     margin-right: -5px !important;
+    }
+
+    ion-icon.accept {
+        color: green;
+
+    }
+
+    ion-icon.reject {
+        margin:0% -2% 0% 7.5% !important;
+        color: red;
+    }
+
+    button.btn-resp {
+        height: 20px;
+        font-size: 12px;
+        width: 80px;
+    }
+
+}

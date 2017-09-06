@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngIf="isProfileLoaded">
+        <ion-card-content>
+          <ion-grid>
+
+            <ion-row>        
+              <ion-col col-12 class="text-center">
+                  <h1>{{ messProfile.messName }}</h1>
+              </ion-col>
+            </ion-row><br>
+
+            <ion-row>        
+              <ion-col col-12 class="text-center">
+                  <h2>{{ messProfile.messId }}</h2>
+              </ion-col>
+            </ion-row>
+
+            <br>
+            <ion-row>        
+              <ion-col col-2>
+                <ion-icon name="person"></ion-icon>
+              </ion-col>
+              <ion-col col-10>
+                <h2>{{ messProfile.messOwner.userProfile.fullName}}</h2>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>        
+              <ion-col col-2>
+                <ion-icon name="mail"></ion-icon>
+              </ion-col>
+              <ion-col col-10>
+                <h2>{{ messProfile.messOwner.email }}</h2>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>        
+              <ion-col col-2>
+                <ion-icon name="call"></ion-icon>
+              </ion-col>
+              <ion-col col-10>
+                <h2>{{ messProfile.messOwner.mobileNumber}}</h2>
+              </ion-col>
+            </ion-row>
+      
+         </ion-grid>
+
+         <br><br>
+         <button class="btn-save" ion-button block (click)="changePassword()">Change Password</button>
+
+      </ion-card-content>
+  </ion-card>
+</ion-content>

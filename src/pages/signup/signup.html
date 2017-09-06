@@ -1,0 +1,98 @@
+<ion-content padding>
+  <section class="login-container">
+
+    <p *ngIf="!isFormValid" class="form-invalid-msg">Please fill out all details accurately.</p>
+
+    <form [formGroup]="messSignUpForm" (ngSubmit)="signup(messSignUpForm.value)">
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Mess Name" value="" [formControl]="messSignUpForm.controls['messName']" [ngClass]="{'error-border':!messSignUpForm.controls['messName'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['messName'].hasError('required') && messSignUpForm.controls['messName'].touched">* Mess Name is required !</div>
+	    	<div class="error-box" *ngIf="messSignUpForm.controls['messName'].hasError('maxlength') && messSignUpForm.controls['messName'].touched">* Maximum Mess Name length is 20 !</div>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Address Line 1" value="" [formControl]="messSignUpForm.controls['addrLine1']" [ngClass]="{'error-border':!messSignUpForm.controls['addrLine1'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['addrLine1'].hasError('required') && messSignUpForm.controls['addrLine1'].touched">* Address Line 1 is required !</div>
+      <ion-item>
+        <ion-input type="text" placeholder="Address Line 2" value="" [formControl]="messSignUpForm.controls['addrLine2']" [ngClass]="{'error-border':!messSignUpForm.controls['addrLine2'].valid}"></ion-input>         
+      </ion-item>
+      
+      <ion-item>
+        <ion-input type="text" placeholder="City" value="" [formControl]="messSignUpForm.controls['city']" [ngClass]="{'error-border':!messSignUpForm.controls['city'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['city'].hasError('required') && messSignUpForm.controls['city'].touched">* City is required !</div>
+	    	<div class="error-box" *ngIf="messSignUpForm.controls['city'].hasError('maxlength') && messSignUpForm.controls['city'].touched">* Maximum City length is 20 !</div>
+
+      <ion-item>
+        <ion-input type="text" placeholder="State" value="" [formControl]="messSignUpForm.controls['state']" [ngClass]="{'error-border':!messSignUpForm.controls['state'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['state'].hasError('required') && messSignUpForm.controls['state'].touched">* State is required !</div>
+	    	<div class="error-box" *ngIf="messSignUpForm.controls['state'].hasError('maxlength') && messSignUpForm.controls['state'].touched">* Maximum State length is 20 !</div>
+
+
+      <ion-item>
+        <ion-input type="number" placeholder="PIN Code" value="" [formControl]="messSignUpForm.controls['pincode']" [ngClass]="{'error-border':!messSignUpForm.controls['pincode'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['pincode'].hasError('required') && messSignUpForm.controls['pincode'].touched">* PIN Code is required !</div>
+        <div class="error-box" *ngIf="messSignUpForm.controls['pincode'].hasError('pattern') && messSignUpForm.controls['pincode'].touched">* Invalid PIN code !</div>
+	    	
+    <ion-list-header class="list-div" >Mess Owner Info</ion-list-header>
+
+      <ion-item>
+        <ion-input type="text" placeholder="First Name" value="" [formControl]="messSignUpForm.controls['firstName']" ></ion-input>
+      </ion-item>
+        <div class="error-box" *ngIf="messSignUpForm.controls['firstName'].hasError('required') && messSignUpForm.controls['firstName'].touched">* First Name is required !</div>
+        <div class="error-box" *ngIf="messSignUpForm.controls['firstName'].hasError('maxlength') && messSignUpForm.controls['firstName'].touched">* Maximum First Name length is 20 !</div>
+      
+      <ion-item>
+        <ion-input type="text" placeholder="Last Name" value="" [formControl]="messSignUpForm.controls['lastName']" ></ion-input>
+      </ion-item>
+        <div class="error-box" *ngIf="messSignUpForm.controls['lastName'].hasError('required') && messSignUpForm.controls['lastName'].touched">* Last Name is required !</div>
+		    <div class="error-box" *ngIf="messSignUpForm.controls['lastName'].hasError('maxlength') && messSignUpForm.controls['lastName'].touched">* Maximum Last Name length is 20 !</div>
+
+
+      <ion-item>
+        <ion-input type="email" placeholder="Email" value="" [formControl]="messSignUpForm.controls['email']" [ngClass]="{'error-border':!messSignUpForm.controls['email'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['email'].hasError('required') && messSignUpForm.controls['email'].touched">* Email is required !</div>
+	    	<div class="error-box" *ngIf="messSignUpForm.controls['email'].hasError('pattern') && messSignUpForm.controls['email'].touched">* Invalid Email !</div>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Mobile Number" value="" [formControl]="messSignUpForm.controls['mobileNo']" [ngClass]="{'error-border':!messSignUpForm.controls['mobileNo'].valid}"></ion-input>         
+      </ion-item>
+      
+        <div class="error-box" *ngIf="messSignUpForm.controls['mobileNo'].hasError('required') && messSignUpForm.controls['mobileNo'].touched">* Mobile Number is required !</div>
+        <div class="error-box" *ngIf="messSignUpForm.controls['mobileNo'].hasError('pattern') && messSignUpForm.controls['mobileNo'].touched">* Invalid Mobile Number !</div>
+	    	
+        <!--<ion-item>
+          <ion-input type="password" placeholder="Password" value="" [formControl]="messSignUpForm.controls['password']" ></ion-input>
+        </ion-item>
+        <div class="error-box" *ngIf="messSignUpForm.controls['password'].hasError('required') && messSignUpForm.controls['password'].touched">* Password is required !</div>
+        <div class="error-box" *ngIf="messSignUpForm.controls['password'].hasError('minlength') && messSignUpForm.controls['password'].touched">* Minimum Password length is 5 !</div>
+
+        <ion-item>
+          <ion-input type="password" placeholder="Confirm Password" value="" [formControl]="messSignUpForm.controls['confirmPassword']" ></ion-input>
+        </ion-item>
+        <div class="error-box" *ngIf="messSignUpForm.controls['confirmPassword'].hasError('required') && messSignUpForm.controls['confirmPassword'].touched">* Confirm Password is required !</div>
+        <div class="error-box" *ngIf="messSignUpForm.controls['confirmPassword'].hasError('minlength') && messSignUpForm.controls['confirmPassword'].touched">* Minimum Confirm Password length is 5 !</div>-->
+
+      <h4 class="pass-info"> *Auto generated password will be send to above email.</h4>
+
+    </ion-list>
+
+    <button class="login-button btn-save" ion-button block>Signup</button>
+
+    </form>
+
+    <button ion-button color="light" class="sign-up" clear (click)="signin()"> Alrady have account ?    Sign in !</button>
+
+  </section>
+</ion-content>

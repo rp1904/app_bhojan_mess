@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Meals</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scan()">
+         <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-button block class="btn-save" (click)="addMeal()">
+    Add New Meal
+  </button>
+
+  <ion-list>
+  <ion-card *ngFor="let meal of meals; let i = index;">
+
+        <ion-card-content>
+
+          <div class="btn-grp">
+            <button ion-button round class="btn-meal close" (click)="closeMeal(meal.mealId)" *ngIf="meal.status == 'OPEN'" >Close</button>
+            <button ion-button round class="btn-meal view" (click)="mealDetails(meal.mealId)">View</button>
+            
+          </div>
+
+          <h2>{{ meal.mealTitle }}</h2>
+          <ion-note>{{ meal.createdUpdated.createdAt | date:'dd-MMM-yyyy hh:mm a' }}</ion-note>
+        </ion-card-content>
+  </ion-card>
+  </ion-list>
+  
+  <ion-card *ngIf="isMealListEmpty">
+   <ion-card-content>
+          <ion-item>
+          <h2 class="txt-center-red"> <ion-icon item-left name="search"></ion-icon>No record found !</h2>
+          </ion-item>
+    </ion-card-content>
+</ion-card>
+
+</ion-content>
