@@ -21,7 +21,7 @@
 
   <ion-content>
     <ion-list no-lines>
-      <button class="side-menu-button" menuClose color="{{p.color}}" ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button class="{{p.cssClass}}" menuClose color="{{p.color}}" ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" class="side-menu-icon"></ion-icon>
         {{p.title}}
       </button>

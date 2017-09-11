@@ -41,6 +41,7 @@ import {
 import {
   Signin
 } from '../pages/signin/signin';
+import { Signup } from '../pages/signup/signup';
 import {
   NewMembershipRequests
 } from '../pages/requests/newMembershipRequests';
@@ -76,12 +77,16 @@ export class MyApp {
 
   versionNo: string;
 
+  btnCssClass: string = 'side-menu-button item item-block item-md';
+
+  btnHidden: string = 'side-menu-button item item-block item-md hidden';
+
   pages: Array < {
     title: string,
     component: any,
     icon: string,
     color: any,
-    isVisible:boolean
+    cssClass:string
   } > ;
 
   constructor(public platform: Platform, public statusBar: StatusBar, private storage: Storage, public modalCtrl: ModalController,
@@ -117,54 +122,69 @@ export class MyApp {
 
 
     // used for an example of ngFor and navigation
-    this.pages = [{
+    this.pages = [
+      {
+        title: 'Sign In',
+        component: Signin,
+        icon: '',
+        color: '',
+        cssClass:this.btnHidden
+      },
+      {
+        title: 'Sign Up',
+        component: Signup,
+        icon: '',
+        color: '',
+        cssClass:this.btnHidden
+      },
+      {
         title: 'Home',
         component: HomePage,
         icon: 'home',
         color: '',
-        isVisible:false
+        cssClass:this.btnCssClass
       },
       {
         title: 'New Requests',
         component: NewMembershipRequests,
         icon: 'person-add',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       },
       {
         title: 'Members',
         component: Members,
         icon: 'people',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       },
       {
         title: 'Meals',
         component: ViewMealList,
         icon: 'restaurant',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       },
       {
         title: 'Meal Coupens',
         component: MealCoupens,
         icon: 'document',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       },
       {
         title: 'Profile',
         component: Profile,
         icon: 'person',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       },
       {
         title: 'Logout',
         component: null,
         icon: 'exit',
         color: '',
-        isVisible:true
+        cssClass:this.btnCssClass
       }
     ];
 
@@ -202,23 +222,23 @@ export class MyApp {
                   this.messName = messname;
                   this.splashScreen.hide();
 
-                  if (val != null) {
-                    this.appUrls.authservice.http.appKey = val;
-                    this.appUrls.isHeaderSet = true;
-                    this.rootPage = HomePage;
-                  } else {
-                    this.appUrls.isHeaderSet = false;
-                    this.rootPage = Signin;
-                  }
+                 if (val != null) {
+                   this.appUrls.authservice.http.appKey = val;
+                   this.appUrls.isHeaderSet = true;
+                   this.rootPage = HomePage;
+                 } else {
+                   this.appUrls.isHeaderSet = false;
+                   this.rootPage = Signin;
+                 }
 
-                  // if (val != null) {
-                  //   this.appUrls.authservice.http.appKey = val;
-                  //   this.appUrls.isHeaderSet = true;
-                  //   this.rootPage = Userpage;
-                  // } else {
-                  //   this.appUrls.isHeaderSet = false;
-                  //   this.rootPage = Userpage;
-                  // }
+                  //  if (val != null) {
+                  //    this.appUrls.authservice.http.appKey = val;
+                  //    this.appUrls.isHeaderSet = true;
+                  //    this.rootPage = Userpage;
+                  //  } else {
+                  //    this.appUrls.isHeaderSet = false;
+                  //    this.rootPage = Userpage;
+                  //  }
 
                 });
               });
@@ -277,12 +297,14 @@ export class MyApp {
 
     this.platform.registerBackButtonAction(() => {
     
-      if (this.nav.getActive().component == this.pages[0].component) {
+      if (this.nav.getActive().component == this.pages[0].component || 
+          this.nav.getActive().component == this.pages[1].component ||
+          this.nav.getActive().component == this.pages[2].component) {
         
         if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
           this.platform.exitApp(); //Exit from app
         } else {
-          this.appUrls.loading.presentToast('bottom', 3000, 'Press back again to exit App !');
+          this.appUrls.loading.presentToast('bottom', 2000, 'Press back again to exit App !');
           lastTimeBackPress = new Date().getTime();
         }
       } else {
