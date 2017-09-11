@@ -194,23 +194,23 @@ export class MyApp {
                   this.messName = messname;
                   this.splashScreen.hide();
 
-                  if (val != null) {
-                    this.appUrls.authservice.http.appKey = val;
-                    this.appUrls.isHeaderSet = true;
-                    this.rootPage = HomePage;
-                  } else {
-                    this.appUrls.isHeaderSet = false;
-                    this.rootPage = Signin;
-                  }
+                 // if (val != null) {
+                 //   this.appUrls.authservice.http.appKey = val;
+                 //   this.appUrls.isHeaderSet = true;
+                 //   this.rootPage = HomePage;
+                 // } else {
+                 //   this.appUrls.isHeaderSet = false;
+                 //   this.rootPage = Signin;
+                 // }
 
-                  // if (val != null) {
-                  //   this.appUrls.authservice.http.appKey = val;
-                  //   this.appUrls.isHeaderSet = true;
-                  //   this.rootPage = Userpage;
-                  // } else {
-                  //   this.appUrls.isHeaderSet = false;
-                  //   this.rootPage = Userpage;
-                  // }
+                   if (val != null) {
+                     this.appUrls.authservice.http.appKey = val;
+                     this.appUrls.isHeaderSet = true;
+                     this.rootPage = Userpage;
+                   } else {
+                     this.appUrls.isHeaderSet = false;
+                     this.rootPage = Userpage;
+                   }
 
                 });
               });
