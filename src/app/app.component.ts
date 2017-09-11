@@ -80,7 +80,8 @@ export class MyApp {
     title: string,
     component: any,
     icon: string,
-    color: any
+    color: any,
+    isVisible:boolean
   } > ;
 
   constructor(public platform: Platform, public statusBar: StatusBar, private storage: Storage, public modalCtrl: ModalController,
@@ -120,43 +121,50 @@ export class MyApp {
         title: 'Home',
         component: HomePage,
         icon: 'home',
-        color: ''
+        color: '',
+        isVisible:false
       },
       {
         title: 'New Requests',
         component: NewMembershipRequests,
         icon: 'person-add',
-        color: ''
+        color: '',
+        isVisible:true
       },
       {
         title: 'Members',
         component: Members,
         icon: 'people',
-        color: ''
+        color: '',
+        isVisible:true
       },
       {
         title: 'Meals',
         component: ViewMealList,
         icon: 'restaurant',
-        color: ''
+        color: '',
+        isVisible:true
       },
       {
         title: 'Meal Coupens',
         component: MealCoupens,
         icon: 'document',
-        color: ''
+        color: '',
+        isVisible:true
       },
       {
         title: 'Profile',
         component: Profile,
         icon: 'person',
-        color: ''
+        color: '',
+        isVisible:true
       },
       {
         title: 'Logout',
         component: null,
         icon: 'exit',
-        color: ''
+        color: '',
+        isVisible:true
       }
     ];
 
